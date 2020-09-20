@@ -1,4 +1,4 @@
-import { User, Diary, Entry } from '../../interface';
+import { Diary, Entry } from '../../interface';
 import { handleErrors } from '../';
 import { Response, Request } from 'miragejs';
 import dayjs from 'dayjs';

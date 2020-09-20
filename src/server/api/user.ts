@@ -11,8 +11,8 @@ export interface AuthResponse {
 }
 
 export const login = (schema: any, request: Request): AuthResponse | Response => {
-    const {username, password} = JSON.parse(request.requestBody);
-    const user = schema.users.findBy({ username });
+    const {email, password} = JSON.parse(request.requestBody);
+    const user = schema.users.findBy({ email });
     if (!user) {
         return handleErrors(null, 'No user with that username exists');
     }

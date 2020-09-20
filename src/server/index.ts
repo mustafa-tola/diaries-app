@@ -42,7 +42,7 @@ export const makeServer = (env?: string): Server => {
       },
   
       routes(): void {
-        // this.urlPrefix = 'https://diaries.app';
+        this.urlPrefix = 'https://diaries.app';
         this.namespace = "api"
 
         this.post('/auth/login', login);
