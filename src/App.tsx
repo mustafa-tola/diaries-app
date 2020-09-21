@@ -18,6 +18,7 @@ const App = () => {
         <div className="App">
           
             <Routes>
+            {/* <PrivateRoute path="/:id/" authenticated={authenticated} component={Home}></PrivateRoute> */}
               <PrivateRoute path="/" authenticated={authenticated} component={Home}></PrivateRoute>
               <PublicRoute path="/signup" authenticated={authenticated} component={Signup}></PublicRoute>
               <PublicRoute path="/login" authenticated={authenticated} component={Login}></PublicRoute>

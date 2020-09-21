@@ -49,11 +49,11 @@ export const makeServer = (env?: string): Server => {
         this.post('/auth/signup', signup);
         
         this.post('/diary/store', create);
-        this.post('/diary/update/:id', updateDiary);
+        this.put('/diary/update/:id', updateDiary);
         this.get('/diaries/:id', getUserDiaries);
 
         this.post('/entry/store', createEntry);
-        this.post('/entry/update/:id', updateEntry);
+        this.put('/entry/update/:id', updateEntry);
         this.get('/entries/:id', getEntriesByDiaries);
 
       },

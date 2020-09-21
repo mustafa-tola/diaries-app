@@ -33,10 +33,10 @@ const authSlice = createSlice({
         loading: false,
         user: {
             diaryIds: null,
-            email: "uzair@example.com",
-            id: "2",
-            password: "cYSB2YDG4DC8yc.",
-            username: "uzair"
+            email: "test@email.com",
+            id: "1",
+            password: "password.",
+            username: "test"
         }
     } as authState,
     reducers : {
@@ -48,7 +48,6 @@ const authSlice = createSlice({
         builder.addCase(loginUser.pending, (state, action: PayloadAction<any>) => {
             state.loading = true;
         }).addCase(loginUser.fulfilled, (state, action : PayloadAction<any>) => {
-            console.log(action)
             if(action.payload){
                 const {token, user} = action.payload;
                 return {
