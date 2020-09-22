@@ -9,7 +9,7 @@ interface EntryState {
 
 export const getEntries = createAsyncThunk(
     'entries/all',
-    async (id: string) => {
+    async (id?: string) => {
       const response = await http.get('/api/entries/'+id);
       return response
     }
@@ -26,7 +26,8 @@ export const updateEntry = createAsyncThunk(
 
 export const addEntry = createAsyncThunk(
     'add/entry',
-    async (data: { diaryId: string; title: string; content: string; }) => {
+    async (data: { diaryId?: string; title: string; content: string; }) => {
+        console.log(data);
       const response = await http.post('/api/entry/store', data);
       return response
     }

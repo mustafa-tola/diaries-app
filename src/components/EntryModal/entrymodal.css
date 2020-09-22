@@ -19,13 +19,27 @@
 }
 
 .body_form_area{
-
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
 }
 
 .title_input{
-
+    width: 90%;
+    display: block;
+    margin: 20px auto;
+    height: 40px;
+    border-radius: 2px;
+    border: 1px solid #e9e9e9;
+    padding: 0px 15px;
 }
 
 .content_field{
-    
+    width: 90%;
+    display: block;
+    margin: 20px auto;
+    height: 300px;
+    border-radius: 2px;
+    border: 1px solid #e9e9e9;
+    padding: 0px 15px;
 }
