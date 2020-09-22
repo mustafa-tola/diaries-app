@@ -51,6 +51,7 @@ export const makeServer = (env?: string): Server => {
         this.post('/diary/store', create);
         this.put('/diary/update/:id', updateDiary);
         this.get('/diaries/:id', getUserDiaries);
+        // this.get('/diary/:id', getDiary);
 
         this.post('/entry/store', createEntry);
         this.put('/entry/update/:id', updateEntry);

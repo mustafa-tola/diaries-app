@@ -2,6 +2,7 @@ import React, { ReactElement, useState, useEffect } from 'react'
 import DiaryModal from '../DiaryModal/DiaryModal';
 import {useSelector} from 'react-redux';
 import { RootState } from '../../store/rootReducer';
+import {Link} from 'react-router-dom';
 
 interface Props {
     title: string;
@@ -34,7 +35,9 @@ const Diary = ({title, type, id}: Props): ReactElement => {
                 </div>
                 <div>
                     <DiaryModal btnTitle={'Edit'} title={'Edit Diary'} mode={'edit'} id={id} editInfo={onEdit} />
-                    <button className="button_white">Entries</button>
+                    <Link to={`/${id}/entries`}>
+                        <button className="button_white">Entries</button>
+                    </Link>
                 </div>
             </div>
         </div>

@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
+import {Link} from "react-router-dom";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -30,7 +31,9 @@ function Header({}: Props): ReactElement {
     return (
         <div>
             <AppBar position="static" classes={{colorPrimary: classes.colorPrimary}}>
+              <Link to="/" >
                 <h3>Diaries</h3>
+              </Link>
                 <Button color="inherit">Logout</Button>
             </AppBar>
         </div>

@@ -1,5 +1,4 @@
 import React, { ReactElement, Fragment, useState, useEffect } from 'react'
-import Header from '../Header/Header'
 import "./home.css";
 import Diary from '../Diary/Diary';
 import {useSelector, useDispatch} from 'react-redux';
@@ -14,9 +13,9 @@ interface Props {
 
 function Home({}: Props): ReactElement {
 
-    const {diaries, loading} = useSelector((state: RootState) => state.diary);
+    const {diaries} = useSelector((state: RootState) => state.diary);
     const {user} = useSelector((state: RootState) => state.auth);
-    const dispatch = useDispatch();    
+    const dispatch = useDispatch();
 
     useEffect(() => {
         user && user?.id && dispatch(getDiaries(user?.id));
@@ -24,7 +23,6 @@ function Home({}: Props): ReactElement {
 
     return (
         <Fragment>
-            <Header/>
             <section className="body__area">
                 <div className="button_area">
                     <h3>Diaries</h3>

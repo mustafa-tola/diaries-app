@@ -1,0 +1,24 @@
+.box__outer_area_entry{
+    border: 1px solid #000;
+    width: 70%;
+    padding: 20px;
+    margin: 10px;
+}
+
+@media(max-width: 600px){
+    .box__outer_area_entry{
+        width: 100%;
+    }
+}
+
+.title{
+    margin-bottom: 10px;
+}
+
+.box__inner_area_entry{
+    text-align: left;
+}
+
+.entry__content{
+
+}

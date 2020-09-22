@@ -55,5 +55,5 @@ export const getUserDiaries = (schema: any, req: Request): Diary[] | Response =>
     } catch (error) {
       return handleErrors(error, 'Could not get user diaries.');
     }
-}  ;
+};
   
