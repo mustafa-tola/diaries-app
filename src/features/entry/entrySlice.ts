@@ -27,8 +27,8 @@ export const updateEntry = createAsyncThunk(
 export const addEntry = createAsyncThunk(
     'add/entry',
     async (data: { diaryId?: string; title: string; content: string; }) => {
-        console.log(data);
       const response = await http.post('/api/entry/store', data);
+      console.log(response);
       return response
     }
 )

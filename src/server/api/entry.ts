@@ -10,8 +10,11 @@ export interface EntryResponse {
 
 export const createEntry = (schema: any, req: Request): EntryResponse | Response => {
     try {
+      console.log(req.requestBody)
         const {title, content, diaryId} = JSON.parse(req.requestBody) as Partial<Entry>;
-        const diary = schema.diaries.findById(diaryId);
+        console.log(title, content, diaryId)
+        const diary = schema.diaries.findBy({ id: diaryId });
+        console.log(diary)
         const now = dayjs().format();
         const entry = diary.createEntry({
             title,
@@ -23,6 +26,9 @@ export const createEntry = (schema: any, req: Request): EntryResponse | Response
             ...diary.attrs,
             updatedAt: now,
         });
+
+        console.log("dairy", diary);
+        console.log('entry', entry)
         return {
             diary: diary.attrs,
             entry: entry.attrs,

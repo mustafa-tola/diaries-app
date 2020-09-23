@@ -1,4 +1,4 @@
-import React, { ReactElement, Fragment, useState } from 'react';
+import React, { ReactElement, Fragment, useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
@@ -31,9 +31,14 @@ interface Props {
     btnTitle: string;
     mode: string;
     diary_id?: string;
+    id?:string;
+    editInfo : {
+        title: string;
+        content: string;
+    },
 }
 
-function EntryModal({btnTitle, mode, diary_id}: Props): ReactElement {
+function EntryModal({btnTitle, mode, diary_id, id, editInfo}: Props): ReactElement {
     const classes = useStyles();
     const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
@@ -66,11 +71,15 @@ function EntryModal({btnTitle, mode, diary_id}: Props): ReactElement {
         mode === "add" ? 
         dispatch(addEntry({...entryData, diaryId: diary_id}))
         :
-        dispatch(updateEntry({...entryData, id: diary_id}));
+        dispatch(updateEntry({...entryData, id: id}));
 
         setOpen(false);
         showAlert('Saved!', 'success');
     }
+
+    useEffect(() => {
+        setEntryData(editInfo)
+    }, [editInfo])
 
     return (
         <Fragment>
