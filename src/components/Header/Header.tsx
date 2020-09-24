@@ -3,6 +3,8 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import {Link} from "react-router-dom";
+import {logout}  from "../../features/auth/authSlice";
+import {useDispatch} from "react-redux";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,6 +29,7 @@ interface Props {
 
 function Header({}: Props): ReactElement {
     const classes = useStyles();
+    const dispatch = useDispatch();
 
     return (
         <div>
@@ -34,7 +37,7 @@ function Header({}: Props): ReactElement {
               <Link to="/" >
                 <h3>Diaries</h3>
               </Link>
-                <Button color="inherit">Logout</Button>
+                <Button color="inherit" onClick={() => dispatch(logout())}>Logout</Button>
             </AppBar>
         </div>
     )

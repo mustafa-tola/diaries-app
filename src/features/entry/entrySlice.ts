@@ -28,7 +28,6 @@ export const addEntry = createAsyncThunk(
     'add/entry',
     async (data: { diaryId?: string; title: string; content: string; }) => {
       const response = await http.post('/api/entry/store', data);
-      console.log(response);
       return response
     }
 )
@@ -40,7 +39,9 @@ const entrySlice = createSlice({
         loading: false
     } as EntryState,
     reducers: {
-
+        clear_entries : (state) => {
+            state.entries = [];
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(getEntries.pending, (state, action: PayloadAction<any>) => {
@@ -79,4 +80,5 @@ const entrySlice = createSlice({
     }
 })
 
+export const {clear_entries} = entrySlice.actions;
 export default entrySlice.reducer;

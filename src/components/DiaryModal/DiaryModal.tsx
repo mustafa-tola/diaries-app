@@ -9,6 +9,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import { RootState } from '../../store/rootReducer';
 import { addDiary, updateDiary } from '../../features/diary/diarySlice';
 import { showAlert } from '../../utils/utils';
+import Loading from '../Loading/Loading.component';
 
 type dataEdit = {
     title: string;
@@ -26,6 +27,7 @@ interface Props {
 function DiaryModal({btnTitle, title, id, editInfo, mode}: Props): ReactElement {
 
     const {user} = useSelector((state: RootState) => state.auth);
+    const {loading} = useSelector((state: RootState) => state.diary);
     const dispatch = useDispatch();
 
     const [data, setData] = useState<{title: string; type: 'private' | 'public';}>({
@@ -97,7 +99,15 @@ function DiaryModal({btnTitle, title, id, editInfo, mode}: Props): ReactElement 
                 </DialogContent>
                 <DialogActions>
                     <button className="button_white" onClick={handleClose}>Close</button>
-                    <button className="button_add" onClick={submit}>Save</button>
+                    {
+                        loading
+                        ?
+                        <button className="button_add">
+                            <Loading type="spinner-border text-light"/>
+                        </button>
+                        :
+                        <button className="button_add" onClick={submit}>Save</button>
+                    }
                 </DialogActions>
             </Dialog>
         </Fragment>

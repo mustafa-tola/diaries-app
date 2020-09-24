@@ -28,20 +28,23 @@ interface authState {
 const authSlice = createSlice({
     name: "auth",
     initialState: {
-        authenticated: true,
-        token : "d413f4441164d86c",
+        authenticated: false,
+        token : "",
         loading: false,
-        user: {
-            diaryIds: null,
-            email: "test@email.com",
-            id: "1",
-            password: "password.",
-            username: "test"
-        }
+        user: null
     } as authState,
     reducers : {
         start_loading : (state) => {
             state.loading = true;
+        },
+        logout : (state) => {
+            return {
+                ...state,
+                authenticated: false,
+                token : "",
+                loading: false,
+                user: null
+            }
         }
     },
     extraReducers: (builder) => {
@@ -79,4 +82,5 @@ const authSlice = createSlice({
     }
 })
 
+export const {logout} = authSlice.actions; 
 export default authSlice.reducer;

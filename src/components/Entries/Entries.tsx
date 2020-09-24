@@ -5,8 +5,10 @@ import "./Entries.css";
 import { RootState } from '../../store/rootReducer';
 import EntryModal from '../EntryModal/EntryModal';
 import {Diary} from "../../interface"
-import { getEntries } from '../../features/entry/entrySlice';
+import { getEntries, clear_entries } from '../../features/entry/entrySlice';
 import EntryItem from '../Entry/Entry';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import {Link} from "react-router-dom";
 
 interface Props {
     
@@ -23,6 +25,7 @@ function Entries({}: Props): ReactElement {
     const { id } = useParams();
 
     useEffect(() => {
+        dispatch(clear_entries());
         const filterDiary = diaries.filter(diary => diary.id === id);
         filterDiary ? setDiary(filterDiary[0]) : setStatus(true);
         filterDiary && filterDiary[0]?.id && dispatch(getEntries(filterDiary[0]?.id));
@@ -30,16 +33,20 @@ function Entries({}: Props): ReactElement {
 
     if(!diary && notfoundStatus)
         return <div>Not Found</div>;
-
-    if(!diary)
-        return <div>Loading ...</div>
+    else if(!diary && !notfoundStatus)
+        return <div>Loading ...</div>;
 
     return (
         <Fragment>
             <section className="body__area">
                 <div className="button_area">
-                <h3>{diary?.title}</h3>
-                {diary && <EntryModal btnTitle={'Add Entry'} mode={'add'} diary_id={diary.id} id={""} editInfo={{title:"", content:""}}/>}
+                    <span>
+                        <Link to="/">
+                            <ArrowBackIosIcon/>
+                            <span className="back_text">Back to Diaries</span>
+                        </Link>
+                    </span>
+                    {diary && <EntryModal btnTitle={'Add Entry'} mode={'add'} diary_id={diary.id} id={""} editInfo={{title:"", content:""}}/>}
                 </div>
                 <div className="entry_area">
                     {

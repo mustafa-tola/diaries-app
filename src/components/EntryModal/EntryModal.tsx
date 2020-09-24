@@ -7,11 +7,12 @@ import { RootState } from '../../store/rootReducer';
 import { addEntry, updateEntry } from '../../features/entry/entrySlice';
 import { showAlert } from '../../utils/utils';
 import "./entrymodal.css";
+import Loading from '../Loading/Loading.component';
 
 const useStyles = makeStyles(theme => ({
     paperAnchorRight: {
         top: '60px',
-        width: '70%',
+        width: '90%',
         right: 0,
         bottom: 0,
         boxShadow: '0 0 2em rgba(0,0,0,.15)',
@@ -39,8 +40,10 @@ interface Props {
 }
 
 function EntryModal({btnTitle, mode, diary_id, id, editInfo}: Props): ReactElement {
+
     const classes = useStyles();
     const dispatch = useDispatch();
+    const {loading} = useSelector((state: RootState) => state.entry);
     const [open, setOpen] = useState(false);
     const [entryData, setEntryData] = useState({
         title: "",
@@ -93,14 +96,26 @@ function EntryModal({btnTitle, mode, diary_id, id, editInfo}: Props): ReactEleme
             >
                 <div className="sidebar__full">
                     <header className="sidebar__header">
-                            <ArrowBackIosIcon className={classes.icon_back} onClick={() => toggleDrawer(false)}/>
-                            <span>Create Entry</span>
+                            <span style={{display: 'flex'}} onClick={() => toggleDrawer(false)}>
+                                <ArrowBackIosIcon className={classes.icon_back} />
+                                <span className="back_text">Back to Entries</span>
+                            </span>
+                            <span style={{width: '300px'}}>Create Entry</span>
+                            <span></span>
                         </header>
                         <div className="body_form_area">
                             <form onSubmit={handleSubmit} style={{textAlign: 'center'}}>
-                                <input className="title_input" name="title" onChange={handleInputChange} value={entryData.title}/>
-                                <textarea name="content" className="content_field" onChange={handleTextAreaChange} value={entryData.content}>{entryData.content}</textarea>
-                                <button className="button_add" type="submit">Save</button>
+                                <input className="title_input" name="title" placeholder="Title" onChange={handleInputChange} value={entryData.title}/>
+                                <textarea name="content" className="content_field" placeholder="What's your Opinion?" onChange={handleTextAreaChange} value={entryData.content}></textarea>
+                                {
+                                    loading
+                                    ?
+                                    <button className="button_add">
+                                        <Loading type="spinner-border text-light"/>
+                                    </button>
+                                    :
+                                    <button className="button_add" type="submit">Save</button>
+                                }
                             </form>
                         </div>
                 </div>
