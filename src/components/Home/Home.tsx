@@ -1,9 +1,9 @@
-import React, { ReactElement, Fragment, useState, useEffect } from 'react'
+import React, { ReactElement, Fragment, useEffect } from 'react'
 import "./home.css";
 import Diary from '../Diary/Diary';
 import {useSelector, useDispatch} from 'react-redux';
 import { RootState } from '../../store/rootReducer';
-import { addDiary, getDiaries } from '../../features/diary/diarySlice';
+import { getDiaries } from '../../features/diary/diarySlice';
 import DiaryModal from '../DiaryModal/DiaryModal';
 
 
@@ -19,7 +19,7 @@ function Home({}: Props): ReactElement {
 
     useEffect(() => {
         user && user?.id && dispatch(getDiaries(user?.id));
-    }, [])
+    }, [dispatch])
 
     return (
         <Fragment>
