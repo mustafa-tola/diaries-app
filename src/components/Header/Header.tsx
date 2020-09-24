@@ -4,7 +4,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import {Link} from "react-router-dom";
 import {logout}  from "../../features/auth/authSlice";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import { RootState } from '../../store/rootReducer';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -30,6 +31,7 @@ interface Props {
 function Header({}: Props): ReactElement {
     const classes = useStyles();
     const dispatch = useDispatch();
+    const {authenticated} = useSelector((state: RootState) => state.auth)
 
     return (
         <div>
@@ -37,7 +39,11 @@ function Header({}: Props): ReactElement {
               <Link to="/" >
                 <h3>Diaries</h3>
               </Link>
-                <Button color="inherit" onClick={() => dispatch(logout())}>Logout</Button>
+              {
+                authenticated
+                &&
+                <Button color="inherit" onClick={() => dispatch(logout())}>Logout</Button> 
+              }
             </AppBar>
         </div>
     )
