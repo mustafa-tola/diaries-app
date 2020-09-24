@@ -29,7 +29,6 @@ const Diary = ({title, type, id}: Props): ReactElement => {
         filterDiary && setEdit({title: filterDiary[0].title, type: filterDiary[0].type})
         http.get<null, { entries: Entry[] }>('/api/entries/'+id)
         .then(({ entries }) => {
-                console.log(entries);
                 setCount(entries.length);
         })
     }, [diaries])
